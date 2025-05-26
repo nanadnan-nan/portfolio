@@ -151,21 +151,40 @@
     <section id="contact" class="section contact animate-on-scroll">
       <h2 class="section-title">Contact Me</h2>
       <div class="contact-content">
-        <form class="contact-form">
-          <div class="form-group">
-            <label for="name">Nama</label>
-            <input type="text" id="name" name="name" required />
-          </div>
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required />
-          </div>
-          <div class="form-group">
-            <label for="message">Pesan</label>
-            <textarea id="message" name="message" rows="5" required></textarea>
-          </div>
-          <button type="submit" class="submit-button">Send Message</button>
-        </form>
+
+
+       <form
+  action="https://formsubmit.co/m.adnanazhari124@gmail.com"
+  method="POST"
+  class="contact-form"
+>
+  <div class="form-group">
+    <label for="name">Nama</label>
+    <input type="text" id="name" name="name" required />
+  </div>
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" required />
+  </div>
+  <div class="form-group">
+    <label for="message">Pesan</label>
+    <textarea id="message" name="message" rows="5" required></textarea>
+  </div>
+
+  <!-- Nonaktifkan CAPTCHA otomatis -->
+  <input type="hidden" name="_captcha" value="false" />
+
+  <!-- Gunakan template tampilan kotak -->
+  <input type="hidden" name="_template" value="box" />
+
+  <!-- Redirect ke halaman thank-you setelah submit -->
+  <input type="hidden" name="_next" value="https://nanadnan-nan.github.io/portfolio/thank-you.html" />
+
+
+  <button type="submit" class="submit-button">Send Message</button>
+</form>
+
+
         <div class="contact-info">
           <p class="contact-text">
             Siap membantu mewujudkan project digital Anda? Mari diskusi
