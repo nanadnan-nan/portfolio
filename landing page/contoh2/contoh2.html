@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Transform Digital - Revolusi Bisnis Anda</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* Hero Section */
+      .hero {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%"><stop offset="0%" stop-color="%23ff6b6b" stop-opacity="0.1"/><stop offset="100%" stop-color="%234ecdc4" stop-opacity="0.05"/></radialGradient></defs><rect width="100%" height="100%" fill="url(%23a)"/><circle cx="200" cy="200" r="100" fill="%23ffffff" opacity="0.03"/><circle cx="800" cy="300" r="150" fill="%23ffffff" opacity="0.02"/><circle cx="400" cy="700" r="80" fill="%23ffffff" opacity="0.04"/></svg>');
+        z-index: 1;
+      }
+
+      .hero-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: center;
+        position: relative;
+        z-index: 2;
+      }
+
+      .hero-text {
+        color: white;
+        opacity: 0;
+        transform: translateY(50px);
+        animation: fadeInUp 1s ease forwards;
+      }
+
+      .hero-text h1 {
+        font-size: 3.5rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+        line-height: 1.2;
+      }
+
+      .hero-text .subtitle {
+        font-size: 1.5rem;
+        margin-bottom: 30px;
+        color: rgba(255, 255, 255, 0.9);
+        font-weight: 300;
+      }
+
+      .hero-text p {
+        font-size: 1.1rem;
+        margin-bottom: 40px;
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      .hero-image {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        transform: translateY(50px);
+        animation: fadeInUp 1s ease 0.3s forwards;
+      }
+
+      .hero-visual {
+        width: 400px;
+        height: 400px;
+        background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+        border-radius: 50%;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        animation: float 6s ease-in-out infinite;
+      }
+
+      .hero-visual::before {
+        content: "";
+        position: absolute;
+        width: 120%;
+        height: 120%;
+        background: linear-gradient(
+          45deg,
+          #ff6b6b20,
+          #4ecdc420,
+          #45b7d120,
+          #96ceb420
+        );
+        border-radius: 50%;
+        z-index: -1;
+        animation: pulse 4s ease-in-out infinite;
+      }
+
+      .hero-visual i {
+        font-size: 8rem;
+        color: white;
+        text-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      /* Form Section */
+      .form-section {
+        padding: 100px 0;
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        position: relative;
+      }
+
+      .form-container {
+        background: white;
+        padding: 60px;
+        border-radius: 20px;
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
+        max-width: 600px;
+        margin: 0 auto;
+        position: relative;
+        overflow: hidden;
+        opacity: 0;
+        transform: translateY(50px);
+      }
+
+      .form-container::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 5px;
+        background: linear-gradient(90deg, #667eea, #764ba2, #667eea);
+        background-size: 200% 100%;
+        animation: shimmer 3s linear infinite;
+      }
+
+      .form-container.visible {
+        opacity: 1;
+        transform: translateY(0);
+        transition: all 1s ease;
+      }
+
+      .form-header {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+
+      .form-header h2 {
+        font-size: 2.5rem;
+        color: #333;
+        margin-bottom: 15px;
+        font-weight: 600;
+      }
+
+      .form-header p {
+        font-size: 1.1rem;
+        color: #666;
+        max-width: 400px;
+        margin: 0 auto;
+      }
+
+      .form-group {
+        margin-bottom: 30px;
+        position: relative;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+        color: #333;
+        font-size: 1rem;
+      }
+
+      .form-group input {
+        width: 100%;
+        padding: 15px 20px;
+        border: 2px solid #e1e5e9;
+        border-radius: 10px;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        background: #fafbfc;
+      }
+
+      .form-group input:focus {
+        outline: none;
+        border-color: #667eea;
+        background: white;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        transform: translateY(-2px);
+      }
+
+      .cta-button {
+        width: 100%;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 18px 40px;
+        border: none;
+        border-radius: 50px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .cta-button::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transition: left 0.5s;
+      }
+
+      .cta-button:hover::before {
+        left: 100%;
+      }
+
+      .cta-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
+      }
+
+      .cta-button:active {
+        transform: translateY(-1px);
+      }
+
+      /* Benefits Section */
+      .benefits {
+        padding: 80px 0;
+        background: white;
+      }
+
+      .benefits-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 40px;
+        margin-top: 60px;
+      }
+
+      .benefit-card {
+        text-align: center;
+        padding: 40px 30px;
+        border-radius: 15px;
+        background: #f8f9fa;
+        transition: all 0.3s ease;
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      .benefit-card.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .benefit-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        background: white;
+      }
+
+      .benefit-icon {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 20px;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        color: white;
+      }
+
+      .benefit-card h3 {
+        font-size: 1.4rem;
+        margin-bottom: 15px;
+        color: #333;
+      }
+
+      .benefit-card p {
+        color: #666;
+        line-height: 1.6;
+      }
+
+      /* Animations */
+      @keyframes fadeInUp {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(1);
+          opacity: 0.7;
+        }
+        50% {
+          transform: scale(1.05);
+          opacity: 0.4;
+        }
+      }
+
+      @keyframes shimmer {
+        0% {
+          background-position: -200% 0;
+        }
+        100% {
+          background-position: 200% 0;
+        }
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .hero-content {
+          grid-template-columns: 1fr;
+          gap: 40px;
+          text-align: center;
+        }
+
+        .hero-text h1 {
+          font-size: 2.5rem;
+        }
+
+        .hero-text .subtitle {
+          font-size: 1.2rem;
+        }
+
+        .hero-visual {
+          width: 300px;
+          height: 300px;
+        }
+
+        .hero-visual i {
+          font-size: 6rem;
+        }
+
+        .form-container {
+          padding: 40px 30px;
+          margin: 0 20px;
+        }
+
+        .form-header h2 {
+          font-size: 2rem;
+        }
+
+        .benefits-grid {
+          grid-template-columns: 1fr;
+          gap: 30px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .hero {
+          padding: 40px 0;
+        }
+
+        .hero-text h1 {
+          font-size: 2rem;
+        }
+
+        .hero-visual {
+          width: 250px;
+          height: 250px;
+        }
+
+        .form-container {
+          padding: 30px 20px;
+          margin: 0 10px;
+        }
+      }
+
+      .section-title {
+        text-align: center;
+        font-size: 2.5rem;
+        color: #333;
+        margin-bottom: 20px;
+        font-weight: 600;
+      }
+
+      .section-subtitle {
+        text-align: center;
+        font-size: 1.1rem;
+        color: #666;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-text">
+            <h1>Transform Digital</h1>
+            <div class="subtitle">Revolusi Bisnis Anda</div>
+            <p>
+              Tingkatkan produktivitas dan efisiensi bisnis Anda dengan solusi
+              digital terdepan. Bergabunglah dengan ribuan perusahaan yang telah
+              merasakan transformasi luar biasa.
+            </p>
+          </div>
+          <div class="hero-image">
+            <div class="hero-visual">
+              <i class="fas fa-rocket"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits">
+      <div class="container">
+        <h2 class="section-title">Mengapa Memilih Kami?</h2>
+        <p class="section-subtitle">
+          Solusi lengkap untuk transformasi digital bisnis Anda dengan teknologi
+          terdepan dan support terbaik
+        </p>
+
+        <div class="benefits-grid">
+          <div class="benefit-card">
+            <div class="benefit-icon">
+              <i class="fas fa-bolt"></i>
+            </div>
+            <h3>Performa Maksimal</h3>
+            <p>
+              Tingkatkan produktivitas hingga 300% dengan otomasi cerdas dan
+              workflow yang dioptimalkan khusus untuk bisnis Anda.
+            </p>
+          </div>
+
+          <div class="benefit-card">
+            <div class="benefit-icon">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <h3>Keamanan Terjamin</h3>
+            <p>
+              Perlindungan data enterprise-level dengan enkripsi bank-grade dan
+              backup otomatis untuk menjaga aset digital Anda.
+            </p>
+          </div>
+
+          <div class="benefit-card">
+            <div class="benefit-icon">
+              <i class="fas fa-headset"></i>
+            </div>
+            <h3>Support 24/7</h3>
+            <p>
+              Tim expert siap membantu Anda kapan saja dengan response time
+              rata-rata &lt; 2 menit untuk memastikan bisnis tetap berjalan.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Form Section -->
+    <section class="form-section">
+      <div class="container">
+        <div class="form-container" id="registrationForm">
+          <div class="form-header">
+            <h2>Mulai Transformasi Anda</h2>
+            <p>
+              Dapatkan konsultasi GRATIS dan demo eksklusif. Bergabunglah dengan
+              10,000+ bisnis yang telah bertransformasi!
+            </p>
+          </div>
+
+          <form id="signupForm">
+            <div class="form-group">
+              <label for="name">Nama Lengkap</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                required
+                placeholder="Masukkan nama lengkap Anda"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email Bisnis</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                placeholder="nama@perusahaan.com"
+              />
+            </div>
+
+            <button type="submit" class="cta-button">
+              <i class="fas fa-rocket" style="margin-right: 10px"></i>
+              Mulai Sekarang - GRATIS
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      // Intersection Observer for scroll animations
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      }, observerOptions);
+
+      // Observe elements for animation
+      document.addEventListener("DOMContentLoaded", () => {
+        const animatedElements = document.querySelectorAll(
+          ".form-container, .benefit-card"
+        );
+        animatedElements.forEach((el) => observer.observe(el));
+
+        // Staggered animation for benefit cards
+        const benefitCards = document.querySelectorAll(".benefit-card");
+        benefitCards.forEach((card, index) => {
+          setTimeout(() => {
+            card.style.transitionDelay = `${index * 0.2}s`;
+          }, 100);
+        });
+      });
+
+      // Form submission handler
+      document
+        .getElementById("signupForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const button = e.target.querySelector(".cta-button");
+          const originalText = button.innerHTML;
+
+          // Loading state
+          button.innerHTML =
+            '<i class="fas fa-spinner fa-spin" style="margin-right: 10px;"></i>Memproses...';
+          button.disabled = true;
+
+          // Simulate API call
+          setTimeout(() => {
+            // Success state
+            button.innerHTML =
+              '<i class="fas fa-check" style="margin-right: 10px;"></i>Berhasil! Cek Email Anda';
+            button.style.background =
+              "linear-gradient(135deg, #27ae60, #2ecc71)";
+
+            // Show success message
+            const formContainer = document.querySelector(".form-container");
+            const successMessage = document.createElement("div");
+            successMessage.style.cssText = `
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    background: white;
+                    padding: 40px;
+                    border-radius: 15px;
+                    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+                    text-align: center;
+                    z-index: 10;
+                `;
+            successMessage.innerHTML = `
+                    <div style="color: #27ae60; font-size: 3rem; margin-bottom: 20px;">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3 style="color: #333; margin-bottom: 15px;">Selamat!</h3>
+                    <p style="color: #666;">Kami telah mengirim email dengan detail konsultasi GRATIS Anda. Periksa inbox dalam 2-3 menit.</p>
+                `;
+
+            formContainer.appendChild(successMessage);
+
+            // Reset form after 3 seconds
+            setTimeout(() => {
+              successMessage.remove();
+              button.innerHTML = originalText;
+              button.disabled = false;
+              button.style.background =
+                "linear-gradient(135deg, #667eea 0%, #764ba2 100%)";
+              e.target.reset();
+            }, 3000);
+          }, 2000);
+        });
+
+      // Enhanced input focus effects
+      document.querySelectorAll("input").forEach((input) => {
+        input.addEventListener("focus", function () {
+          this.parentElement.style.transform = "scale(1.02)";
+        });
+
+        input.addEventListener("blur", function () {
+          this.parentElement.style.transform = "scale(1)";
+        });
+      });
+
+      // Parallax effect for hero
+      window.addEventListener("scroll", () => {
+        const scrolled = window.pageYOffset;
+        const hero = document.querySelector(".hero");
+        const rate = scrolled * -0.5;
+        hero.style.transform = `translateY(${rate}px)`;
+      });
+
+      // Dynamic gradient animation
+      let gradientAngle = 135;
+      setInterval(() => {
+        gradientAngle += 1;
+        const ctaButton = document.querySelector(".cta-button");
+        if (ctaButton && !ctaButton.disabled) {
+          ctaButton.style.background = `linear-gradient(${gradientAngle}deg, #667eea 0%, #764ba2 100%)`;
+        }
+      }, 100);
+    </script>
+  </body>
+</html>

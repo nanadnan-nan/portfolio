@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Makanan Khas - Cita Rasa Tradisional Nusantara</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Arial", sans-serif;
+        line-height: 1.6;
+        color: #5d4e37;
+        background-color: #fff8dc;
+      }
+
+      /* Header */
+      header {
+        background: linear-gradient(135deg, #d2691e, #cd853f);
+        color: white;
+        padding: 1rem 0;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      .logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+        text-decoration: none;
+        color: white;
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+      }
+
+      .nav-links a {
+        color: white;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      .nav-links a:hover {
+        color: #ffd700;
+      }
+
+      .menu-toggle {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+      }
+
+      .menu-toggle span {
+        width: 25px;
+        height: 3px;
+        background: white;
+        margin: 3px 0;
+        transition: 0.3s;
+      }
+
+      /* Hero Section */
+      .hero {
+        background: linear-gradient(
+            rgba(210, 105, 30, 0.7),
+            rgba(205, 133, 63, 0.7)
+          ),
+          url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23D2691E" width="1200" height="600"/><circle fill="%23CD853F" cx="200" cy="150" r="80"/><circle fill="%23DEB887" cx="600" cy="200" r="100"/><circle fill="%23F4A460" cx="1000" cy="100" r="60"/><path fill="%23B8860B" d="M0,400 Q300,350 600,400 T1200,400 V600 H0 Z"/></svg>');
+        background-size: cover;
+        background-position: center;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: white;
+        margin-top: 70px;
+      }
+
+      .hero-content {
+        max-width: 800px;
+        padding: 0 2rem;
+        animation: fadeInUp 1s ease-out;
+      }
+
+      .hero h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+      }
+
+      .cta-button {
+        background: linear-gradient(45deg, #ff8c00, #ffd700);
+        color: #5d4e37;
+        padding: 15px 30px;
+        text-decoration: none;
+        border-radius: 50px;
+        font-weight: bold;
+        transition: transform 0.3s, box-shadow 0.3s;
+        display: inline-block;
+      }
+
+      .cta-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Sections */
+      section {
+        padding: 4rem 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .section-title {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        color: #8b4513;
+        position: relative;
+      }
+
+      .section-title::after {
+        content: "";
+        width: 100px;
+        height: 3px;
+        background: linear-gradient(90deg, #d2691e, #ffd700);
+        display: block;
+        margin: 1rem auto;
+      }
+
+      /* About Section */
+      .about {
+        background: white;
+        border-radius: 20px;
+        padding: 3rem;
+        margin: 2rem 0;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .about::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        right: -50%;
+        width: 100%;
+        height: 100%;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="none" stroke="%23DEB887" stroke-width="1" opacity="0.3" d="M10,10 Q50,30 90,10 Q70,50 90,90 Q50,70 10,90 Q30,50 10,10 Z"/></svg>');
+        background-size: 100px 100px;
+      }
+
+      .about-content {
+        position: relative;
+        z-index: 1;
+      }
+
+      /* Product Gallery */
+      .gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin: 3rem 0;
+      }
+
+      .product-card {
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+        position: relative;
+      }
+
+      .product-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+      }
+
+      .product-image {
+        height: 250px;
+        background: linear-gradient(45deg, #d2691e, #deb887);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3rem;
+        color: white;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .product-image::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50"><circle fill="white" opacity="0.1" cx="25" cy="25" r="20"/><circle fill="white" opacity="0.05" cx="10" cy="10" r="5"/><circle fill="white" opacity="0.05" cx="40" cy="15" r="3"/></svg>');
+        background-size: 50px 50px;
+      }
+
+      .product-info {
+        padding: 1.5rem;
+      }
+
+      .product-info h3 {
+        color: #8b4513;
+        margin-bottom: 0.5rem;
+      }
+
+      .product-info p {
+        color: #666;
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+      }
+
+      .price {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: #d2691e;
+      }
+
+      /* Features */
+      .features {
+        background: linear-gradient(135deg, #fff8dc, #f5deb3);
+        border-radius: 20px;
+        padding: 3rem;
+        margin: 3rem 0;
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+
+      .feature-item {
+        text-align: center;
+        padding: 2rem;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+      }
+
+      .feature-item:hover {
+        transform: translateY(-5px);
+      }
+
+      .feature-icon {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(45deg, #d2691e, #ffd700);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1rem;
+        font-size: 2rem;
+        color: white;
+      }
+
+      /* Contact */
+      .contact {
+        background: white;
+        border-radius: 20px;
+        padding: 3rem;
+        margin: 3rem 0;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .contact-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 3rem;
+        margin-top: 2rem;
+      }
+
+      .contact-info {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem;
+        background: #fff8dc;
+        border-radius: 10px;
+        transition: background 0.3s;
+      }
+
+      .contact-item:hover {
+        background: #f5deb3;
+      }
+
+      .contact-icon {
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(45deg, #d2691e, #ffd700);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.2rem;
+      }
+
+      /* Footer */
+      footer {
+        background: linear-gradient(135deg, #8b4513, #5d4e37);
+        color: white;
+        text-align: center;
+        padding: 2rem;
+        margin-top: 3rem;
+      }
+
+      /* Animations */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .fade-in {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.6s, transform 0.6s;
+      }
+
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          width: 100%;
+          background: #d2691e;
+          flex-direction: column;
+          padding: 1rem;
+        }
+
+        .nav-links.active {
+          display: flex;
+        }
+
+        .menu-toggle {
+          display: flex;
+        }
+
+        .hero h1 {
+          font-size: 2rem;
+        }
+
+        .hero p {
+          font-size: 1rem;
+        }
+
+        .section-title {
+          font-size: 2rem;
+        }
+
+        .gallery {
+          grid-template-columns: 1fr;
+        }
+
+        .features-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .contact-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <nav>
+        <a href="#" class="logo">🍯 Makanan Khas</a>
+        <ul class="nav-links">
+          <li><a href="#beranda">Beranda</a></li>
+          <li><a href="#tentang">Tentang</a></li>
+          <li><a href="#produk">Produk</a></li>
+          <li><a href="#keunggulan">Keunggulan</a></li>
+          <li><a href="#kontak">Kontak</a></li>
+        </ul>
+        <div class="menu-toggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="beranda" class="hero">
+      <div class="hero-content">
+        <h1>Nikmati Cita Rasa Tradisional dari Seluruh Nusantara</h1>
+        <p>
+          Rasakan kelezatan kuliner asli Indonesia dengan resep warisan nenek
+          moyang yang telah dipertahankan turun-temurun
+        </p>
+        <a href="#produk" class="cta-button">Jelajahi Produk Kami</a>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="tentang">
+      <div class="about fade-in">
+        <div class="about-content">
+          <h2 class="section-title">Tentang Makanan Khas</h2>
+          <p
+            style="
+              text-align: center;
+              font-size: 1.1rem;
+              color: #666;
+              margin-bottom: 2rem;
+            "
+          >
+            Makanan Khas adalah UMKM yang didedikasikan untuk melestarikan dan
+            menyajikan cita rasa autentik kuliner tradisional Indonesia. Kami
+            percaya bahwa setiap gigitan makanan tradisional membawa cerita,
+            budaya, dan kehangatan dari tanah air tercinta.
+          </p>
+          <p style="text-align: center; font-size: 1rem; color: #666">
+            Dengan menggunakan resep turun-temurun dan bahan-bahan alami
+            pilihan, kami menghadirkan camilan khas daerah yang tidak hanya
+            lezat, tetapi juga sehat dan bebas dari bahan pengawet buatan.
+            Setiap produk kami adalah hasil karya tangan yang penuh cinta dan
+            dedikasi untuk mempertahankan warisan kuliner Nusantara.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Product Gallery -->
+    <section id="produk">
+      <h2 class="section-title fade-in">Galeri Produk Kami</h2>
+      <div class="gallery">
+        <div class="product-card fade-in">
+          <div class="product-image">🥮</div>
+          <div class="product-info">
+            <h3>Kue Kering Tradisional</h3>
+            <p>
+              Koleksi kue kering dengan resep warisan, termasuk nastar,
+              kastengel, dan putri salju yang renyah dan lezat.
+            </p>
+            <div class="price">Rp 45.000 - Rp 85.000</div>
+          </div>
+        </div>
+        <div class="product-card fade-in">
+          <div class="product-image">🍘</div>
+          <div class="product-info">
+            <h3>Keripik Nusantara</h3>
+            <p>
+              Keripik singkong, pisang, dan ubi dengan bumbu tradisional yang
+              menggugah selera dari berbagai daerah.
+            </p>
+            <div class="price">Rp 15.000 - Rp 25.000</div>
+          </div>
+        </div>
+        <div class="product-card fade-in">
+          <div class="product-image">🍬</div>
+          <div class="product-info">
+            <h3>Dodol & Jenang</h3>
+            <p>
+              Dodol durian, dodol betawi, dan jenang dengan tekstur kenyal dan
+              rasa manis alami yang autentik.
+            </p>
+            <div class="price">Rp 20.000 - Rp 35.000</div>
+          </div>
+        </div>
+        <div class="product-card fade-in">
+          <div class="product-image">🥜</div>
+          <div class="product-info">
+            <h3>Camilan Kacang</h3>
+            <p>
+              Kacang mete, kacang atom, dan rempeyek dengan bumbu khas yang
+              gurih dan renyah.
+            </p>
+            <div class="price">Rp 18.000 - Rp 30.000</div>
+          </div>
+        </div>
+        <div class="product-card fade-in">
+          <div class="product-image">🍪</div>
+          <div class="product-info">
+            <h3>Wingko & Kue Basah</h3>
+            <p>
+              Wingko babat, lemper, dan klepon dengan kelapa parut segar dan
+              gula aren asli.
+            </p>
+            <div class="price">Rp 12.000 - Rp 28.000</div>
+          </div>
+        </div>
+        <div class="product-card fade-in">
+          <div class="product-image">🧈</div>
+          <div class="product-info">
+            <h3>Selai & Saus Tradisional</h3>
+            <p>
+              Selai buah lokal, sambel pecel, dan saus rujak dengan cita rasa
+              otentik tanpa pengawet.
+            </p>
+            <div class="price">Rp 22.000 - Rp 40.000</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="keunggulan">
+      <div class="features fade-in">
+        <h2 class="section-title">Keunggulan Produk Kami</h2>
+        <div class="features-grid">
+          <div class="feature-item fade-in">
+            <div class="feature-icon">📜</div>
+            <h3>Resep Warisan</h3>
+            <p>
+              Menggunakan resep turun-temurun yang telah terbukti kelezatannya
+              selama puluhan tahun dan diwariskan dari generasi ke generasi.
+            </p>
+          </div>
+          <div class="feature-item fade-in">
+            <div class="feature-icon">🌿</div>
+            <h3>Bahan Alami</h3>
+            <p>
+              Semua bahan baku dipilih dengan teliti, menggunakan bahan-bahan
+              alami dan segar tanpa campuran kimia berbahaya.
+            </p>
+          </div>
+          <div class="feature-item fade-in">
+            <div class="feature-icon">🚫</div>
+            <h3>Tanpa Pengawet</h3>
+            <p>
+              Produk kami bebas dari bahan pengawet buatan, menjaga kesehatan
+              keluarga dengan cita rasa yang tetap autentik.
+            </p>
+          </div>
+          <div class="feature-item fade-in">
+            <div class="feature-icon">👩‍🍳</div>
+            <h3>Buatan Tangan</h3>
+            <p>
+              Setiap produk dibuat dengan tangan penuh kehati-hatian dan cinta,
+              menjaga kualitas dan tekstur yang sempurna.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="kontak">
+      <div class="contact fade-in">
+        <h2 class="section-title">Hubungi Kami</h2>
+        <div class="contact-grid">
+          <div class="contact-info">
+            <div class="contact-item">
+              <div class="contact-icon">📍</div>
+              <div>
+                <h4>Alamat</h4>
+                <p>Jl. Raya Kuliner No. 123<br />Yogyakarta, Indonesia 55281</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">📞</div>
+              <div>
+                <h4>Telepon</h4>
+                <p>+62 812-3456-7890</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">✉️</div>
+              <div>
+                <h4>Email</h4>
+                <p>info@makanankhas.id</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">🕐</div>
+              <div>
+                <h4>Jam Buka</h4>
+                <p>Senin - Sabtu: 08:00 - 17:00<br />Minggu: 09:00 - 15:00</p>
+              </div>
+            </div>
+          </div>
+          <div style="text-align: center">
+            <h3 style="margin-bottom: 2rem; color: #8b4513">Pesan Sekarang!</h3>
+            <div
+              style="
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+                max-width: 300px;
+                margin: 0 auto;
+              "
+            >
+              <a
+                href="https://wa.me/6281234567890?text=Halo, saya tertarik dengan produk Makanan Khas"
+                class="cta-button"
+                style="
+                  background: linear-gradient(45deg, #25d366, #128c7e);
+                  color: white;
+                  text-align: center;
+                "
+              >
+                💬 WhatsApp
+              </a>
+              <a
+                href="#"
+                class="cta-button"
+                style="
+                  background: linear-gradient(45deg, #ff6b35, #f7931e);
+                  color: white;
+                  text-align: center;
+                "
+              >
+                🛒 Shopee
+              </a>
+              <a
+                href="#"
+                class="cta-button"
+                style="
+                  background: linear-gradient(45deg, #42a5f5, #1e88e5);
+                  color: white;
+                  text-align: center;
+                "
+              >
+                📱 Tokopedia
+              </a>
+            </div>
+            <div style="margin-top: 2rem">
+              <h4 style="color: #8b4513; margin-bottom: 1rem">
+                Ikuti Media Sosial Kami
+              </h4>
+              <div style="display: flex; justify-content: center; gap: 1rem">
+                <div class="contact-icon" style="cursor: pointer">📘</div>
+                <div class="contact-icon" style="cursor: pointer">📷</div>
+                <div class="contact-icon" style="cursor: pointer">🐦</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p>
+        &copy; 2025 Makanan Khas - Melestarikan Cita Rasa Nusantara. Semua hak
+        dilindungi undang-undang.
+      </p>
+      <p style="margin-top: 0.5rem; font-size: 0.9rem; opacity: 0.8">
+        Dibuat dengan ❤️ untuk melestarikan kuliner tradisional Indonesia
+      </p>
+    </footer>
+
+    <script>
+      // Mobile Menu Toggle
+      document
+        .querySelector(".menu-toggle")
+        .addEventListener("click", function () {
+          document.querySelector(".nav-links").classList.toggle("active");
+        });
+
+      // Smooth Scrolling
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+
+      // Scroll Animation
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      }, observerOptions);
+
+      // Observe all fade-in elements
+      document.querySelectorAll(".fade-in").forEach((el) => {
+        observer.observe(el);
+      });
+
+      // Add floating animation to CTA buttons
+      document.querySelectorAll(".cta-button").forEach((button) => {
+        button.addEventListener("mouseenter", function () {
+          this.style.animation = "float 2s ease-in-out infinite";
+        });
+
+        button.addEventListener("mouseleave", function () {
+          this.style.animation = "none";
+        });
+      });
+
+      // Add CSS for float animation
+      const style = document.createElement("style");
+      style.textContent = `
+            @keyframes float {
+                0%, 100% { transform: translateY(0px); }
+                50% { transform: translateY(-5px); }
+            }
+        `;
+      document.head.appendChild(style);
+
+      // Product card hover effects
+      document.querySelectorAll(".product-card").forEach((card) => {
+        card.addEventListener("mouseenter", function () {
+          this.style.transform = "translateY(-10px) scale(1.02)";
+        });
+
+        card.addEventListener("mouseleave", function () {
+          this.style.transform = "translateY(0) scale(1)";
+        });
+      });
+
+      // Header background change on scroll
+      window.addEventListener("scroll", function () {
+        const header = document.querySelector("header");
+        if (window.scrollY > 100) {
+          header.style.background =
+            "linear-gradient(135deg, rgba(210, 105, 30, 0.95), rgba(205, 133, 63, 0.95))";
+          header.style.backdropFilter = "blur(10px)";
+        } else {
+          header.style.background = "linear-gradient(135deg, #D2691E, #CD853F)";
+          header.style.backdropFilter = "none";
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Halaman Produk</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Arial", sans-serif;
+      }
+
+      body {
+        line-height: 1.6;
+        color: #333;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .hero {
+        background: linear-gradient(135deg, #6b21a8, #c084fc);
+        color: white;
+        padding: 100px 0;
+        text-align: center;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+      }
+
+      .hero-content {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .hero-text {
+        flex: 1;
+        min-width: 300px;
+        padding: 20px;
+      }
+
+      .hero-text h1 {
+        font-size: 3rem;
+        margin-bottom: 20px;
+        line-height: 1.2;
+      }
+
+      .hero-text p {
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+        opacity: 0.9;
+      }
+
+      .cta-button {
+        background: #f59e0b;
+        color: white;
+        padding: 15px 30px;
+        border: none;
+        border-radius: 5px;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: transform 0.3s ease, background 0.3s ease;
+      }
+
+      .cta-button:hover {
+        background: #d97706;
+        transform: scale(1.05);
+      }
+
+      .hero-image {
+        flex: 1;
+        min-width: 300px;
+        padding: 20px;
+      }
+
+      .hero-image img {
+        max-width: 100%;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      .description {
+        padding: 80px 0;
+        background: #f9fafb;
+        text-align: center;
+      }
+
+      .description h2 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+      }
+
+      .description p {
+        max-width: 700px;
+        margin: 0 auto;
+        font-size: 1.1rem;
+        color: #555;
+      }
+
+      .features {
+        padding: 80px 0;
+        background: white;
+      }
+
+      .features h2 {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 40px;
+      }
+
+      .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+      }
+
+      .feature-item {
+        text-align: center;
+        padding: 20px;
+      }
+
+      .feature-item i {
+        font-size: 2.5rem;
+        color: #6b21a8;
+        margin-bottom: 15px;
+      }
+
+      .feature-item h3 {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+      }
+
+      .feature-item p {
+        color: #555;
+      }
+
+      .testimonials {
+        padding: 80px 0;
+        background: #f9fafb;
+        text-align: center;
+      }
+
+      .testimonials h2 {
+        font-size: 2.5rem;
+        margin-bottom: 40px;
+      }
+
+      .testimonial-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+      }
+
+      .testimonial-item {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .testimonial-item img {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        margin-bottom: 15px;
+        object-fit: cover;
+      }
+
+      .testimonial-item p {
+        font-style: italic;
+        color: #555;
+        margin-bottom: 15px;
+      }
+
+      .testimonial-item h4 {
+        font-size: 1.1rem;
+        color: #6b21a8;
+      }
+
+      .cta-section {
+        padding: 80px 0;
+        background: linear-gradient(135deg, #6b21a8, #c084fc);
+        text-align: center;
+        color: white;
+      }
+
+      .cta-section h2 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+      }
+
+      .cta-section p {
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+        opacity: 0.9;
+      }
+
+      @media (max-width: 768px) {
+        .hero-text h1 {
+          font-size: 2rem;
+        }
+
+        .hero-text p {
+          font-size: 1rem;
+        }
+
+        .hero {
+          padding: 60px 0;
+        }
+
+        .description,
+        .features,
+        .testimonials,
+        .cta-section {
+          padding: 60px 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content" data-aos="fade-up">
+          <div class="hero-text">
+            <h1>Revolusi Cara Kerja Anda dengan Aplikasi Kami</h1>
+            <p>
+              Tingkatkan produktivitas dan permudah tugas harian Anda dengan
+              solusi digital terbaru kami.
+            </p>
+            <button class="cta-button">Mulai Sekarang</button>
+          </div>
+          <div class="hero-image">
+            <img
+              src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=500&q=80"
+              alt="Gambar Produk"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Description Section -->
+    <section class="description">
+      <div class="container">
+        <h2 data-aos="fade-up">Mengapa Memilih Produk Kami?</h2>
+        <p data-aos="fade-up" data-aos-delay="100">
+          Aplikasi kami dirancang untuk menyederhanakan tugas harian Anda,
+          meningkatkan kolaborasi, dan memberikan hasil lebih cepat. Dengan
+          antarmuka yang intuitif dan fitur-fitur canggih, ini adalah alat
+          sempurna bagi profesional dan tim yang ingin selalu unggul.
+        </p>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+      <div class="container">
+        <h2 data-aos="fade-up">Fitur Unggulan</h2>
+        <div class="feature-grid">
+          <div class="feature-item" data-aos="fade-up" data-aos-delay="100">
+            <i class="fas fa-rocket"></i>
+            <h3>Sangat Cepat</h3>
+            <p>
+              Rasakan performa super cepat untuk menjaga alur kerja Anda tetap
+              lancar.
+            </p>
+          </div>
+          <div class="feature-item" data-aos="fade-up" data-aos-delay="200">
+            <i class="fas fa-users"></i>
+            <h3>Kolaborasi Tim</h3>
+            <p>
+              Bekerja bersama dengan mudah menggunakan alat kolaborasi
+              real-time.
+            </p>
+          </div>
+          <div class="feature-item" data-aos="fade-up" data-aos-delay="300">
+            <i class="fas fa-shield-alt"></i>
+            <h3>Keamanan Terbaik</h3>
+            <p>Data Anda terlindungi dengan enkripsi tingkat industri.</p>
+          </div>
+          <div class="feature-item" data-aos="fade-up" data-aos-delay="400">
+            <i class="fas fa-mobile-alt"></i>
+            <h3>Responsif di Semua Perangkat</h3>
+            <p>
+              Akses aplikasi dari mana saja, kapan saja, melalui perangkat
+              apapun.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+      <div class="container">
+        <h2 data-aos="fade-up">Apa Kata Pengguna Kami</h2>
+        <div class="testimonial-grid">
+          <div class="testimonial-item" data-aos="fade-up" data-aos-delay="100">
+            <img
+              src="https://randomuser.me/api/portraits/women/44.jpg"
+              alt="Jane Doe"
+            />
+            <p>
+              "Aplikasi ini mengubah cara tim kami berkolaborasi. Sangat
+              direkomendasikan!"
+            </p>
+            <h4>Jane Doe</h4>
+          </div>
+          <div class="testimonial-item" data-aos="fade-up" data-aos-delay="200">
+            <img
+              src="https://randomuser.me/api/portraits/men/32.jpg"
+              alt="John Smith"
+            />
+            <p>
+              "Alat terbaik untuk produktivitas. Mudah digunakan dan sangat
+              powerful."
+            </p>
+            <h4>John Smith</h4>
+          </div>
+          <div class="testimonial-item" data-aos="fade-up" data-aos-delay="300">
+            <img
+              src="https://randomuser.me/api/portraits/women/68.jpg"
+              alt="Emily Brown"
+            />
+            <p>
+              "Keamanan dan kecepatan dalam satu paket. Saya sangat
+              menyukainya!"
+            </p>
+            <h4>Emily Brown</h4>
+          </div>
+          <div class="testimonial-item" data-aos="fade-up" data-aos-delay="400">
+            <img
+              src="https://randomuser.me/api/portraits/men/85.jpg"
+              alt="Rizky Pratama"
+            />
+            <p>
+              "Sangat membantu pekerjaan saya sehari-hari. Fitur-fiturnya
+              lengkap dan mudah diakses."
+            </p>
+            <h4>Rizky Pratama</h4>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="container">
+        <h2 data-aos="fade-up">Siap Mengubah Cara Kerja Anda?</h2>
+        <p data-aos="fade-up" data-aos-delay="100">
+          Bergabunglah dengan ribuan pengguna yang telah mempercayai aplikasi
+          kami untuk meningkatkan produktivitas mereka.
+        </p>
+        <button class="cta-button" data-aos="fade-up" data-aos-delay="200">
+          Coba Gratis Sekarang
+        </button>
+      </div>
+    </section>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 800,
+        once: true,
+      });
+    </script>
+  </body>
+</html>

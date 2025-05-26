@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Adnan - Freelance Web Developer</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+      <div class="nav-container">
+        <div class="logo">WELCOME</div>
+        <ul class="nav-menu" id="nav-menu">
+          <li><a href="#home" class="nav-link active">Home</a></li>
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#services" class="nav-link">Specialist</a></li>
+          <li><a href="#portfolio" class="nav-link">Portfolio</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+        <div
+          class="mobile-menu"
+          id="mobile-menu"
+          tabindex="0"
+          aria-label="Open navigation"
+          role="button"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+      <div class="hero-content">
+        <div class="hero-text">
+          <p class="hero-intro">Hi, saya</p>
+          <h1 class="hero-name">Adnan Azhari</h1>
+          <h5 class="hero-title" style="font-size: 2rem">
+            <span id="typing-text" class="typing-animation"></span>
+          </h5>
+          <p class="hero-description">
+            Saya membuat website yang menarik dan fungsional untuk membantu
+            bisnis Anda berkembang di dunia digital. Spesialisasi dalam landing
+            page yang convert dan website UMKM yang profesional.
+          </p>
+          <a href="#contact" class="cta-button">Hire Me</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section animate-on-scroll">
+      <h2 class="section-title">About Me</h2>
+      <div class="about-content">
+        <div class="about-text">
+          <p>
+            Saya seorang freelance web developer yang berfokus pada pembuatan
+            website berkualitas tinggi dengan pengalaaman lebih dari 3 tahun di
+            bidang web development. Keahlian utama saya meliputi HTML, CSS, dan
+            JavaScript untuk menciptakan pengalaman web yang optimal.
+          </p>
+          <br />
+          <p>
+            Saya memahami pentingnya first impression dalam dunia digital. Oleh
+            karena itu, setiap project yang saya kerjakan selalu mengutamakan
+            desain yang menarik, user experience yang smooth, dan performa yang
+            cepat. Gaya kerja saya adalah komunikatif, detail-oriented, dan
+            selalu mengutamakan kepuasan klien.
+          </p>
+          <br />
+          <p>
+            Mari berkolaborasi untuk mewujudkan ide digital Anda menjadi
+            kenyataan!
+          </p>
+        </div>
+        <div class="about-image">
+            <img src="images/oke.png" alt="Foto Adnan Azhari" class="profile-photo" style="width:300px; height:300px; object-fit:cover;" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section services animate-on-scroll">
+      <h2 class="section-title">Specialist</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-rocket"></i>
+          </div>
+          <h3 class="service-title">Landing Page</h3>
+          <p class="service-description">
+            Buat landing page yang menarik dan efektif untuk meningkatkan
+            konversi bisnis Anda. Desain modern, loading cepat, dan
+            mobile-friendly dengan fokus pada call-to-action yang powerful.
+          </p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-store"></i>
+          </div>
+          <h3 class="service-title">Website UMKM</h3>
+          <p class="service-description">
+            Website profesional untuk usaha kecil dan menengah. Tampilkan
+            produk, layanan, dan profil bisnis dengan desain yang credible dan
+            mudah dikelola untuk meningkatkan trust customer.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="section animate-on-scroll">
+      <h2 class="section-title">Portfolio</h2>
+      <div class="portfolio-grid">
+        <div class="portfolio-item">
+          <div class="portfolio-image">
+            <i class="fas fa-rocket"></i>
+          </div>
+          <div class="portfolio-content">
+            <h3 class="portfolio-title">Landing Page</h3>
+            <p class="portfolio-description">
+              Contoh landing page promosi produk/jasa dengan desain menarik, CTA jelas, dan performa optimal untuk meningkatkan konversi.
+            </p>
+            <a href="landing page/landing.html" class="portfolio-button">View Demo</a>
+          </div>
+        </div>
+        <div class="portfolio-item">
+          <div class="portfolio-image">
+            <i class="fas fa-store"></i>
+          </div>
+          <div class="portfolio-content">
+            <h3 class="portfolio-title">Website UMKM</h3>
+            <p class="portfolio-description">
+              Website profesional untuk UMKM, menampilkan profil bisnis, produk, dan kontak dengan tampilan yang kredibel dan mudah diakses.
+            </p>
+            <a href="UMKM/umkm.html" class="portfolio-button">View Demo</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact animate-on-scroll">
+      <h2 class="section-title">Contact Me</h2>
+      <div class="contact-content">
+        <form class="contact-form">
+          <div class="form-group">
+            <label for="name">Nama</label>
+            <input type="text" id="name" name="name" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+          <div class="form-group">
+            <label for="message">Pesan</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+          </div>
+          <button type="submit" class="submit-button">Send Message</button>
+        </form>
+        <div class="contact-info">
+          <p class="contact-text">
+            Siap membantu mewujudkan project digital Anda? Mari diskusi
+            kebutuhan dan ide Anda. Saya akan dengan senang hati memberikan
+            solusi terbaik untuk bisnis Anda.
+          </p>
+          <div class="social-links">
+            <a href="https://www.instagram.com/nanadnannn_" class="social-link" target="_blank">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a
+              href="https://wa.me/6287777760920"
+              class="social-link"
+              target="_blank"
+            >
+              <i class="fab fa-whatsapp"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" id="scroll-top">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="script.js"></script>
+  </body>
+</html>

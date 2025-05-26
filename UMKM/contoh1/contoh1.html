@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Batik Nusantara - Batik Tulis Asli Warisan Budaya</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --primary-brown: #8b4513;
+        --secondary-cream: #f5f5dc;
+        --accent-gold: #daa520;
+        --dark-blue: #1e3a5f;
+        --light-brown: #d2b48c;
+        --text-dark: #2c1810;
+        --white: #ffffff;
+      }
+
+      body {
+        font-family: "Georgia", serif;
+        line-height: 1.6;
+        color: var(--text-dark);
+        overflow-x: hidden;
+      }
+
+      /* Navigation */
+      .navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: rgba(139, 69, 19, 0.95);
+        backdrop-filter: blur(10px);
+        z-index: 1000;
+        transition: all 0.3s ease;
+      }
+
+      .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+      }
+
+      .logo {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: var(--accent-gold);
+        text-decoration: none;
+      }
+
+      .nav-menu {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+      }
+
+      .nav-link {
+        color: var(--white);
+        text-decoration: none;
+        transition: color 0.3s ease;
+        cursor: pointer;
+      }
+
+      .nav-link:hover {
+        color: var(--accent-gold);
+      }
+
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+      }
+
+      .hamburger span {
+        width: 25px;
+        height: 3px;
+        background: var(--white);
+        margin: 3px 0;
+        transition: 0.3s;
+      }
+
+      /* Hero Section */
+      .hero {
+        height: 100vh;
+        background: linear-gradient(
+          135deg,
+          var(--primary-brown) 0%,
+          var(--dark-blue) 100%
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: var(--white);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="batik" patternUnits="userSpaceOnUse" width="20" height="20"><circle cx="10" cy="10" r="2" fill="none" stroke="rgba(218,165,32,0.1)" stroke-width="0.5"/><path d="M5,5 Q10,2 15,5 Q12,10 15,15 Q10,18 5,15 Q8,10 5,5" fill="none" stroke="rgba(218,165,32,0.05)" stroke-width="0.3"/></pattern></defs><rect width="100" height="100" fill="url(%23batik)"/></svg>')
+          repeat;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        max-width: 800px;
+        padding: 2rem;
+      }
+
+      .hero h1 {
+        font-size: 3.5rem;
+        margin-bottom: 1rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .hero p {
+        font-size: 1.3rem;
+        margin-bottom: 2rem;
+        opacity: 0.9;
+      }
+
+      .cta-button {
+        display: inline-block;
+        background: var(--accent-gold);
+        color: var(--text-dark);
+        padding: 1rem 2rem;
+        text-decoration: none;
+        border-radius: 50px;
+        font-weight: bold;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(218, 165, 32, 0.3);
+      }
+
+      .cta-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(218, 165, 32, 0.4);
+      }
+
+      /* Section Styles */
+      .section {
+        padding: 5rem 0;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      .section-title {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 3rem;
+        color: var(--primary-brown);
+        position: relative;
+      }
+
+      .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 3px;
+        background: var(--accent-gold);
+      }
+
+      /* About Section */
+      .about {
+        background: var(--secondary-cream);
+      }
+
+      .about-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+      }
+
+      .about-text {
+        font-size: 1.1rem;
+        line-height: 1.8;
+      }
+
+      .about-image {
+        position: relative;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .about-image img {
+        width: 100%;
+        height: 400px;
+        object-fit: cover;
+      }
+
+      /* Features Section */
+      .features {
+        background: var(--white);
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+      }
+
+      .feature-card {
+        background: var(--white);
+        padding: 2rem;
+        border-radius: 15px;
+        text-align: center;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+        border: 2px solid var(--light-brown);
+      }
+
+      .feature-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .feature-icon {
+        font-size: 3rem;
+        color: var(--accent-gold);
+        margin-bottom: 1rem;
+      }
+
+      .feature-card h3 {
+        color: var(--primary-brown);
+        margin-bottom: 1rem;
+      }
+
+      /* Gallery Section */
+      .gallery {
+        background: var(--secondary-cream);
+      }
+
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+      }
+
+      .gallery-item {
+        background: var(--white);
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+      }
+
+      .gallery-item:hover {
+        transform: scale(1.02);
+      }
+
+      .gallery-item img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+      }
+
+      .gallery-info {
+        padding: 1.5rem;
+      }
+
+      .gallery-info h3 {
+        color: var(--primary-brown);
+        margin-bottom: 0.5rem;
+      }
+
+      .gallery-info p {
+        color: var(--text-dark);
+        opacity: 0.8;
+      }
+
+      /* Contact Section */
+      .contact {
+        background: var(--dark-blue);
+        color: var(--white);
+      }
+
+      .contact-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 3rem;
+      }
+
+      .contact-info {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .contact-item i {
+        font-size: 1.5rem;
+        color: var(--accent-gold);
+        width: 30px;
+      }
+
+      .order-buttons {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+        margin-top: 2rem;
+      }
+
+      .order-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 1rem;
+        background: var(--accent-gold);
+        color: var(--text-dark);
+        text-decoration: none;
+        border-radius: 10px;
+        font-weight: bold;
+        transition: all 0.3s ease;
+      }
+
+      .order-btn:hover {
+        background: var(--light-brown);
+        transform: translateY(-2px);
+      }
+
+      /* Footer */
+      .footer {
+        background: var(--text-dark);
+        color: var(--white);
+        text-align: center;
+        padding: 2rem 0;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .hamburger {
+          display: flex;
+        }
+
+        .nav-menu {
+          position: fixed;
+          left: -100%;
+          top: 70px;
+          flex-direction: column;
+          background-color: var(--primary-brown);
+          width: 100%;
+          text-align: center;
+          transition: 0.3s;
+          padding: 2rem 0;
+        }
+
+        .nav-menu.active {
+          left: 0;
+        }
+
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+
+        .hero p {
+          font-size: 1.1rem;
+        }
+
+        .about-content {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+
+        .section-title {
+          font-size: 2rem;
+        }
+
+        .contact-content {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* Animations */
+      .fade-in {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.6s ease;
+      }
+
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Scroll indicator */
+      .scroll-indicator {
+        position: absolute;
+        bottom: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        animation: bounce 2s infinite;
+      }
+
+      @keyframes bounce {
+        0%,
+        20%,
+        50%,
+        80%,
+        100% {
+          transform: translateX(-50%) translateY(0);
+        }
+        40% {
+          transform: translateX(-50%) translateY(-10px);
+        }
+        60% {
+          transform: translateX(-50%) translateY(-5px);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="nav-container">
+        <a href="#home" class="logo">Batik Nusantara</a>
+        <ul class="nav-menu">
+          <li><a href="#home" class="nav-link">Beranda</a></li>
+          <li><a href="#about" class="nav-link">Tentang Kami</a></li>
+          <li><a href="#features" class="nav-link">Keunggulan</a></li>
+          <li><a href="#gallery" class="nav-link">Galeri</a></li>
+          <li><a href="#contact" class="nav-link">Kontak</a></li>
+        </ul>
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+      <div class="hero-content">
+        <h1 data-aos="fade-up">Batik Tulis Asli</h1>
+        <p data-aos="fade-up" data-aos-delay="200">
+          Warisan Budaya dalam Setiap Motif
+        </p>
+        <a
+          href="#contact"
+          class="cta-button"
+          data-aos="fade-up"
+          data-aos-delay="400"
+          >Pesan Sekarang</a
+        >
+      </div>
+      <div class="scroll-indicator">
+        <i
+          class="fas fa-chevron-down"
+          style="color: var(--accent-gold); font-size: 1.5rem"
+        ></i>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section about">
+      <div class="container">
+        <h2 class="section-title" data-aos="fade-up">Tentang Kami</h2>
+        <div class="about-content">
+          <div class="about-text" data-aos="fade-right">
+            <h3
+              style="
+                color: var(--primary-brown);
+                margin-bottom: 1rem;
+                font-size: 1.5rem;
+              "
+            >
+              Batik Nusantara - Melestarikan Tradisi
+            </h3>
+            <p>
+              Kami adalah UMKM keluarga yang telah berdedikasi selama lebih dari
+              20 tahun dalam melestarikan seni batik tulis tradisional. Setiap
+              kain batik yang kami produksi dibuat dengan tangan oleh pengrajin
+              berpengalaman yang telah mewarisi keahlian turun-temurun.
+            </p>
+
+            <p>
+              Berlokasi di Yogyakarta, kami menggunakan bahan-bahan berkualitas
+              tinggi seperti kain katun prima, malam alami, dan pewarna yang
+              ramah lingkungan. Setiap motif memiliki makna filosofis yang
+              mendalam, merefleksikan kearifan lokal dan nilai-nilai budaya
+              Nusantara.
+            </p>
+
+            <p>
+              Komitmen kami adalah menghadirkan batik tulis asli yang tidak
+              hanya indah dipandang, tetapi juga nyaman dikenakan untuk berbagai
+              acara, mulai dari formal hingga kasual.
+            </p>
+          </div>
+          <div class="about-image" data-aos="fade-left">
+            <img
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Cdefs%3E%3ClinearGradient id='bg' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23D2B48C'/%3E%3Cstop offset='100%25' style='stop-color:%238B4513'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='400' fill='url(%23bg)'/%3E%3Cg fill='none' stroke='%23DAA520' stroke-width='2' opacity='0.8'%3E%3Ccircle cx='100' cy='100' r='30'/%3E%3Ccircle cx='300' cy='150' r='25'/%3E%3Ccircle cx='200' cy='250' r='20'/%3E%3Ccircle cx='350' cy='300' r='15'/%3E%3Cpath d='M50,200 Q100,150 150,200 Q200,250 250,200 Q300,150 350,200'/%3E%3Cpath d='M50,300 Q150,250 250,300 Q350,350 400,300'/%3E%3C/g%3E%3Ctext x='200' y='350' text-anchor='middle' fill='%23FFFFFF' font-family='serif' font-size='16'%3E%3C/text%3E%3C/svg%3E"
+              alt="Pengrajin Batik"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="section features">
+      <div class="container">
+        <h2 class="section-title" data-aos="fade-up">Keunggulan Batik Kami</h2>
+        <div class="features-grid">
+          <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="feature-icon">
+              <i class="fas fa-hand-paper"></i>
+            </div>
+            <h3>100% Handmade</h3>
+            <p>
+              Setiap kain batik dibuat dengan tangan menggunakan teknik canting
+              tradisional, memastikan keunikan dan kualitas setiap helai kain.
+            </p>
+          </div>
+          <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="feature-icon">
+              <i class="fas fa-leaf"></i>
+            </div>
+            <h3>Bahan Alami</h3>
+            <p>
+              Menggunakan malam alami, pewarna ramah lingkungan, dan kain katun
+              berkualitas tinggi yang nyaman untuk semua cuaca.
+            </p>
+          </div>
+          <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="feature-icon">
+              <i class="fas fa-palette"></i>
+            </div>
+            <h3>Motif Tradisional</h3>
+            <p>
+              Koleksi motif klasik seperti Parang, Kawung, Sido Mukti, dan motif
+              khas daerah dengan makna filosofis yang mendalam.
+            </p>
+          </div>
+          <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+            <div class="feature-icon">
+              <i class="fas fa-star"></i>
+            </div>
+            <h3>Multifungsi</h3>
+            <p>
+              Cocok untuk berbagai acara: formal, casual, pesta, hingga seragam
+              kantor. Tersedia dalam berbagai ukuran dan model.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="section gallery">
+      <div class="container">
+        <h2 class="section-title" data-aos="fade-up">Galeri Produk</h2>
+        <div class="gallery-grid">
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="100">
+            <img
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 250'%3E%3Cdefs%3E%3ClinearGradient id='parang' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%231e3a5f'/%3E%3Cstop offset='100%25' style='stop-color:%238B4513'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='300' height='250' fill='url(%23parang)'/%3E%3Cg fill='none' stroke='%23DAA520' stroke-width='2'%3E%3Cpath d='M0,50 Q50,0 100,50 Q150,100 200,50 Q250,0 300,50' /%3E%3Cpath d='M0,100 Q50,50 100,100 Q150,150 200,100 Q250,50 300,100' /%3E%3Cpath d='M0,150 Q50,100 100,150 Q150,200 200,150 Q250,100 300,150' /%3E%3Cpath d='M0,200 Q50,150 100,200 Q150,250 200,200 Q250,150 300,200' /%3E%3C/g%3E%3Ctext x='150' y='130' text-anchor='middle' fill='%23DAA520' font-family='serif' font-size='14' font-weight='bold'%3E%3C/text%3E%3C/svg%3E"
+              alt="Batik Parang"
+            />
+            <div class="gallery-info">
+              <h3>Batik Parang Klasik</h3>
+              <p>
+                Motif tradisional dengan filosofi kekuatan dan keteguhan hati.
+                Cocok untuk acara formal dan resmi.
+              </p>
+            </div>
+          </div>
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="200">
+            <img
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 250'%3E%3Cdefs%3E%3CradialGradient id='kawung' cx='50%25' cy='50%25' r='50%25'%3E%3Cstop offset='0%25' style='stop-color:%23D2B48C'/%3E%3Cstop offset='100%25' style='stop-color:%238B4513'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width='300' height='250' fill='url(%23kawung)'/%3E%3Cg fill='none' stroke='%23DAA520' stroke-width='2'%3E%3Ccircle cx='75' cy='62.5' r='25'/%3E%3Ccircle cx='225' cy='62.5' r='25'/%3E%3Ccircle cx='150' cy='125' r='25'/%3E%3Ccircle cx='75' cy='187.5' r='25'/%3E%3Ccircle cx='225' cy='187.5' r='25'/%3E%3Cpath d='M75,87.5 L150,100 L225,87.5' stroke-width='1'/%3E%3Cpath d='M75,162.5 L150,150 L225,162.5' stroke-width='1'/%3E%3C/g%3E%3Ctext x='150' y='220' text-anchor='middle' fill='%23DAA520' font-family='serif' font-size='14' font-weight='bold'%3E%3C/text%3E%3C/svg%3E"
+              alt="Batik Kawung"
+            />
+            <div class="gallery-info">
+              <h3>Batik Kawung Elegan</h3>
+              <p>
+                Motif geometris yang melambangkan kesucian dan kemuliaan.
+                Perfect untuk berbagai kesempatan.
+              </p>
+            </div>
+          </div>
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="300">
+            <img
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 250'%3E%3Cdefs%3E%3ClinearGradient id='sido' x1='0%25' y1='0%25' x2='100%25' y2='0%25'%3E%3Cstop offset='0%25' style='stop-color:%23DAA520'/%3E%3Cstop offset='50%25' style='stop-color:%23D2B48C'/%3E%3Cstop offset='100%25' style='stop-color:%23DAA520'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='300' height='250' fill='url(%23sido)'/%3E%3Cg fill='none' stroke='%238B4513' stroke-width='2'%3E%3Cpath d='M50,50 Q150,25 250,50 Q200,125 150,125 Q100,125 50,50' /%3E%3Cpath d='M75,100 Q150,75 225,100 Q200,150 150,150 Q100,150 75,100' /%3E%3Cpath d='M100,150 Q150,125 200,150 Q175,200 150,200 Q125,200 100,150' /%3E%3Ccircle cx='150' cy='125' r='10' fill='%238B4513'/%3E%3C/g%3E%3Ctext x='150' y='230' text-anchor='middle' fill='%238B4513' font-family='serif' font-size='14' font-weight='bold'%3E%3C/text%3E%3C/svg%3E"
+              alt="Batik Sido Mukti"
+            />
+            <div class="gallery-info">
+              <h3>Batik Sido Mukti</h3>
+              <p>
+                Motif penuh berkah yang sering digunakan untuk acara pernikahan
+                dan upacara adat.
+              </p>
+            </div>
+          </div>
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="400">
+            <img
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 250'%3E%3Cdefs%3E%3ClinearGradient id='truntum' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23F5F5DC'/%3E%3Cstop offset='100%25' style='stop-color:%231e3a5f'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='300' height='250' fill='url(%23truntum)'/%3E%3Cg fill='none' stroke='%23DAA520' stroke-width='1.5'%3E%3Cpath d='M75,75 Q100,50 125,75 Q150,100 125,125 Q100,150 75,125 Q50,100 75,75' /%3E%3Cpath d='M175,75 Q200,50 225,75 Q250,100 225,125 Q200,150 175,125 Q150,100 175,75' /%3E%3Cpath d='M125,150 Q150,125 175,150 Q200,175 175,200 Q150,225 125,200 Q100,175 125,150' /%3E%3Ccircle cx='100' cy='100' r='8' fill='%23DAA520'/%3E%3Ccircle cx='200' cy='100' r='8' fill='%23DAA520'/%3E%3Ccircle cx='150' cy='175' r='8' fill='%23DAA520'/%3E%3C/g%3E%3Ctext x='150' y='240' text-anchor='middle' fill='%23DAA520' font-family='serif' font-size='14' font-weight='bold'%3E%3C/text%3E%3C/svg%3E"
+              alt="Batik Truntum"
+            />
+            <div class="gallery-info">
+              <h3>Batik Truntum Modern</h3>
+              <p>
+                Motif bunga yang melambangkan kasih sayang dan cinta yang tumbuh
+                kembali.
+              </p>
+            </div>
+          </div>
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="500">
+            <img
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 250'%3E%3Cdefs%3E%3CradialGradient id='megamendung' cx='50%25' cy='50%25' r='70%25'%3E%3Cstop offset='0%25' style='stop-color:%231e3a5f'/%3E%3Cstop offset='100%25' style='stop-color:%23DAA520'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width='300' height='250' fill='url(%23megamendung)'/%3E%3Cg fill='none' stroke='%23F5F5DC' stroke-width='2'%3E%3Cpath d='M50,100 Q100,50 150,100 Q200,150 250,100' /%3E%3Cpath d='M75,150 Q125,100 175,150 Q225,200 275,150' /%3E%3C/g%3E%3Ctext x='150' y='230' text-anchor='middle' fill='%23F5F5DC' font-family='serif' font-size='14' font-weight='bold'%3E%3C/text%3E%3C/svg%3E"
+              alt="Batik Mega Mendung"
+            />
+            <div class="gallery-info">
+              <h3>Batik Mega Mendung</h3>
+              <p>
+                Motif awan yang khas dari Cirebon, melambangkan kesabaran dan
+                ketenangan hati.
+              </p>
+            </div>
+          </div>
+          <div class="gallery-item" data-aos="fade-up" data-aos-delay="600">
+            <img
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 250'%3E%3Cdefs%3E%3ClinearGradient id='sogan' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23D2B48C'/%3E%3Cstop offset='100%25' style='stop-color:%238B4513'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='300' height='250' fill='url(%23sogan)'/%3E%3Cg fill='none' stroke='%23DAA520' stroke-width='1.5'%3E%3Cpath d='M50,50 L100,100 L50,150 L100,200 L150,150 L200,200 L250,150 L200,100 L250,50 L200,25 L150,75 L100,25 Z' /%3E%3Cpath d='M75,75 L125,125 L175,75 L225,125 L175,175 L125,175 Z' /%3E%3Ccircle cx='150' cy='125' r='15' fill='%23DAA520'/%3E%3C/g%3E%3Ctext x='150' y='230' text-anchor='middle' fill='%23DAA520' font-family='serif' font-size='14' font-weight='bold'%3E%3C/text%3E%3C/svg%3E"
+              alt="Batik Sogan"
+            />
+            <div class="gallery-info">
+              <h3>Batik Sogan Tradisional</h3>
+              <p>
+                Warna coklat klasik yang elegan, cocok untuk segala usia dan
+                berbagai acara resmi.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact">
+      <div class="container">
+        <h2
+          class="section-title"
+          data-aos="fade-up"
+          style="color: var(--accent-gold)"
+        >
+          Hubungi Kami
+        </h2>
+        <div class="contact-content">
+          <div data-aos="fade-right">
+            <h3
+              style="
+                color: var(--accent-gold);
+                margin-bottom: 2rem;
+                font-size: 1.5rem;
+              "
+            >
+              Informasi Kontak
+            </h3>
+            <div class="contact-info">
+              <div class="contact-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <div>
+                  <strong>Alamat:</strong><br />
+                  Jl. Malioboro No. 123, Yogyakarta 55271
+                </div>
+              </div>
+              <div class="contact-item">
+                <i class="fas fa-phone"></i>
+                <div>
+                  <strong>Telepon:</strong><br />
+                  +62 274 123 4567
+                </div>
+              </div>
+              <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <div>
+                  <strong>Email:</strong><br />
+                  info@batiknusantara.com
+                </div>
+              </div>
+              <div class="contact-item">
+                <i class="fas fa-clock"></i>
+                <div>
+                  <strong>Jam Operasional:</strong><br />
+                  Senin - Sabtu: 08:00 - 17:00 WIB
+                </div>
+              </div>
+            </div>
+          </div>
+          <div data-aos="fade-left">
+            <h3
+              style="
+                color: var(--accent-gold);
+                margin-bottom: 2rem;
+                font-size: 1.5rem;
+              "
+            >
+              Cara Pemesanan
+            </h3>
+            <p style="margin-bottom: 2rem">
+              Silakan hubungi kami melalui platform berikut untuk konsultasi dan
+              pemesanan batik tulis asli:
+            </p>
+            <div class="order-buttons">
+              <a
+                href="https://wa.me/6281234567890?text=Halo,%20saya%20tertarik%20dengan%20batik%20tulis%20Anda"
+                class="order-btn"
+                target="_blank"
+              >
+                <i class="fab fa-whatsapp"></i>
+                WhatsApp
+              </a>
+              <a href="#" class="order-btn">
+                <i class="fab fa-shopee"></i>
+                Shopee
+              </a>
+              <a href="#" class="order-btn">
+                <i class="fas fa-shopping-bag"></i>
+                Tokopedia
+              </a>
+              <a
+                href="https://maps.google.com/maps?q=Jl.+Malioboro+No.+123,+Yogyakarta"
+                class="order-btn"
+                target="_blank"
+              >
+                <i class="fas fa-map-marked-alt"></i>
+                Google Maps
+              </a>
+            </div>
+            <div style="margin-top: 2rem">
+              <h4 style="color: var(--accent-gold); margin-bottom: 1rem">
+                Ikuti Kami:
+              </h4>
+              <div style="display: flex; gap: 1rem">
+                <a href="#" style="color: var(--accent-gold); font-size: 1.5rem"
+                  ><i class="fab fa-instagram"></i
+                ></a>
+                <a href="#" style="color: var(--accent-gold); font-size: 1.5rem"
+                  ><i class="fab fa-facebook"></i
+                ></a>
+                <a href="#" style="color: var(--accent-gold); font-size: 1.5rem"
+                  ><i class="fab fa-tiktok"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <p>
+          &copy; 2024 Batik Nusantara. Semua Hak Dilindungi. | Batik Tulis Asli
+          Warisan Budaya Indonesia
+        </p>
+      </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+      // Initialize AOS
+      AOS.init({
+        duration: 800,
+        once: true,
+        offset: 100,
+      });
+
+      // Mobile Navigation
+      const hamburger = document.querySelector(".hamburger");
+      const navMenu = document.querySelector(".nav-menu");
+      const navLinks = document.querySelectorAll(".nav-link");
+
+      hamburger.addEventListener("click", () => {
+        hamburger.classList.toggle("active");
+        navMenu.classList.toggle("active");
+      });
+
+      // Close mobile menu when clicking on a link
+      navLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          hamburger.classList.remove("active");
+          navMenu.classList.remove("active");
+        });
+      });
+
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+
+      // Navbar background change on scroll
+      window.addEventListener("scroll", () => {
+        const navbar = document.querySelector(".navbar");
+        if (window.scrollY > 100) {
+          navbar.style.background = "rgba(139, 69, 19, 0.98)";
+        } else {
+          navbar.style.background = "rgba(139, 69, 19, 0.95)";
+        }
+      });
+
+      // Animate elements on scroll (fallback for browsers without AOS support)
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          }
+        });
+      }, observerOptions);
+
+      // Observe elements with fade-in class
+      document.querySelectorAll(".fade-in").forEach((el) => {
+        observer.observe(el);
+      });
+
+      // Add some interactive hover effects
+      document.querySelectorAll(".gallery-item").forEach((item) => {
+        item.addEventListener("mouseenter", function () {
+          this.style.transform = "scale(1.02) translateY(-5px)";
+          this.style.boxShadow = "0 15px 35px rgba(0,0,0,0.2)";
+        });
+
+        item.addEventListener("mouseleave", function () {
+          this.style.transform = "scale(1) translateY(0)";
+          this.style.boxShadow = "0 5px 20px rgba(0,0,0,0.1)";
+        });
+      });
+
+      // Feature cards animation
+      document.querySelectorAll(".feature-card").forEach((card) => {
+        card.addEventListener("mouseenter", function () {
+          this.style.transform = "translateY(-10px)";
+          this.style.boxShadow = "0 20px 40px rgba(0,0,0,0.15)";
+        });
+
+        card.addEventListener("mouseleave", function () {
+          this.style.transform = "translateY(0)";
+          this.style.boxShadow = "0 5px 20px rgba(0,0,0,0.1)";
+        });
+      });
+
+      // Add loading animation
+      window.addEventListener("load", () => {
+        document.body.style.opacity = "1";
+      });
+
+      // WhatsApp floating button (optional)
+      const createFloatingWhatsApp = () => {
+        const whatsappFloat = document.createElement("div");
+        whatsappFloat.innerHTML = '<i class="fab fa-whatsapp"></i>';
+        whatsappFloat.style.cssText = `
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                width: 60px;
+                height: 60px;
+                background: #25D366;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                font-size: 24px;
+                box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+                cursor: pointer;
+                z-index: 1000;
+                transition: all 0.3s ease;
+            `;
+
+        whatsappFloat.addEventListener("mouseenter", function () {
+          this.style.transform = "scale(1.1)";
+          this.style.boxShadow = "0 6px 25px rgba(37, 211, 102, 0.6)";
+        });
+
+        whatsappFloat.addEventListener("mouseleave", function () {
+          this.style.transform = "scale(1)";
+          this.style.boxShadow = "0 4px 20px rgba(37, 211, 102, 0.4)";
+        });
+
+        whatsappFloat.addEventListener("click", () => {
+          window.open(
+            "https://wa.me/6281234567890?text=Halo,%20saya%20tertarik%20dengan%20batik%20tulis%20Anda",
+            "_blank"
+          );
+        });
+
+        document.body.appendChild(whatsappFloat);
+      };
+
+      // Create floating WhatsApp button
+      createFloatingWhatsApp();
+    </script>
+  </body>
+</html>
