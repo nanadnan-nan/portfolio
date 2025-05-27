@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MoneyWise - Kelola Uang Anda Lebih Baik</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        overflow-x: hidden;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* Header */
+      header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 1rem 0;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        backdrop-filter: blur(10px);
+        transition: all 0.3s ease;
+      }
+
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 1.8rem;
+        font-weight: bold;
+        animation: slideInLeft 1s ease-out;
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+      }
+
+      .nav-links a {
+        color: white;
+        text-decoration: none;
+        transition: opacity 0.3s ease;
+      }
+
+      .nav-links a:hover {
+        opacity: 0.7;
+      }
+
+      /* Hero Section */
+      .hero {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 120px 0 80px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+        opacity: 0.3;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+      }
+
+      .hero h1 {
+        font-size: 3.5rem;
+        margin-bottom: 1rem;
+        animation: fadeInUp 1.2s ease-out;
+      }
+
+      .hero p {
+        font-size: 1.3rem;
+        margin-bottom: 2rem;
+        opacity: 0.9;
+        animation: fadeInUp 1.2s ease-out 0.3s both;
+      }
+
+      .hero-mockup {
+        display: flex;
+        justify-content: center;
+        margin: 3rem 0;
+        animation: fadeInUp 1.2s ease-out 0.6s both;
+      }
+
+      .phone-mockup {
+        width: 300px;
+        height: 600px;
+        background: #1a1a1a;
+        border-radius: 30px;
+        padding: 20px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        position: relative;
+        animation: float 3s ease-in-out infinite;
+      }
+
+      .phone-screen {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: white;
+      }
+
+      .app-ui {
+        text-align: center;
+        padding: 20px;
+      }
+
+      .balance {
+        font-size: 2rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+      }
+
+      .chart-placeholder {
+        width: 200px;
+        height: 120px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 10px;
+        margin: 1rem auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .cta-primary {
+        background: #ff6b6b;
+        color: white;
+        padding: 15px 40px;
+        border: none;
+        border-radius: 50px;
+        font-size: 1.2rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+        animation: pulse 2s infinite;
+      }
+
+      .cta-primary:hover {
+        background: #ff5252;
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(255, 107, 107, 0.3);
+      }
+
+      /* Features Section */
+      .features {
+        padding: 80px 0;
+        background: #f8f9fa;
+      }
+
+      .section-title {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 3rem;
+        color: #333;
+        animation: fadeInUp 1s ease-out;
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 3rem;
+        margin-top: 3rem;
+      }
+
+      .feature-card {
+        background: white;
+        padding: 2rem;
+        border-radius: 15px;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        animation: fadeInUp 1s ease-out;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      }
+
+      .feature-icon {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 1rem;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        color: white;
+        animation: bounceIn 1s ease-out;
+      }
+
+      .feature-card h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: #333;
+      }
+
+      .feature-card p {
+        color: #666;
+        line-height: 1.6;
+      }
+
+      /* Testimonials */
+      .testimonials {
+        padding: 80px 0;
+        background: white;
+      }
+
+      .testimonial-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+      }
+
+      .testimonial-card {
+        background: #f8f9fa;
+        padding: 2rem;
+        border-radius: 15px;
+        border-left: 5px solid #667eea;
+        animation: fadeInUp 1s ease-out;
+      }
+
+      .testimonial-text {
+        font-style: italic;
+        margin-bottom: 1rem;
+        color: #555;
+        font-size: 1.1rem;
+      }
+
+      .testimonial-author {
+        font-weight: bold;
+        color: #333;
+      }
+
+      .testimonial-role {
+        color: #666;
+        font-size: 0.9rem;
+      }
+
+      /* CTA Section */
+      .cta-section {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 80px 0;
+        text-align: center;
+      }
+
+      .cta-section h2 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        animation: fadeInUp 1s ease-out;
+      }
+
+      .cta-section p {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+        opacity: 0.9;
+        animation: fadeInUp 1s ease-out 0.3s both;
+      }
+
+      /* Footer */
+      footer {
+        background: #333;
+        color: white;
+        padding: 2rem 0;
+        text-align: center;
+      }
+
+      /* Animations */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes slideInLeft {
+        from {
+          opacity: 0;
+          transform: translateX(-30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes bounceIn {
+        0% {
+          opacity: 0;
+          transform: scale(0.3);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1.05);
+        }
+        70% {
+          transform: scale(0.9);
+        }
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+      }
+
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.7);
+        }
+        70% {
+          box-shadow: 0 0 0 10px rgba(255, 107, 107, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(255, 107, 107, 0);
+        }
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+
+        .hero p {
+          font-size: 1.1rem;
+        }
+
+        .phone-mockup {
+          width: 250px;
+          height: 500px;
+        }
+
+        .nav-links {
+          display: none;
+        }
+
+        .features-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .testimonial-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* Scroll animations */
+      .animate-on-scroll {
+        opacity: 0;
+        transform: translateY(50px);
+        transition: all 0.8s ease-out;
+      }
+
+      .animate-on-scroll.animated {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <nav class="container">
+        <div class="logo">💰 MoneyWise</div>
+        <ul class="nav-links">
+          <li><a href="#features">Fitur</a></li>
+          <li><a href="#testimonials">Testimoni</a></li>
+          <li><a href="#download">Download</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <h1>Kelola Uang Anda Lebih Baik, Mulai Hari Ini</h1>
+          <p>
+            Catat pengeluaran, atur anggaran, dan capai target tabungan dengan
+            mudah menggunakan aplikasi keuangan pribadi terdepan
+          </p>
+
+          <div class="hero-mockup">
+            <div class="phone-mockup">
+              <div class="phone-screen">
+                <div class="app-ui">
+                  <h3>💰 MoneyWise</h3>
+                  <div class="balance">Rp 2.547.000</div>
+                  <p>Saldo Anda</p>
+                  <div class="chart-placeholder">📊 Grafik Keuangan</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <a href="#download" class="cta-primary">Coba Gratis Sekarang</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+      <div class="container">
+        <h2 class="section-title animate-on-scroll">Fitur Unggulan</h2>
+        <div class="features-grid">
+          <div class="feature-card animate-on-scroll">
+            <div class="feature-icon">📝</div>
+            <h3>Pelacak Pengeluaran</h3>
+            <p>
+              Catat setiap pengeluaran dengan mudah dan kategorikan secara
+              otomatis. Lihat ke mana uang Anda mengalir dengan detail yang
+              jelas.
+            </p>
+          </div>
+
+          <div class="feature-card animate-on-scroll">
+            <div class="feature-icon">📊</div>
+            <h3>Laporan Grafik</h3>
+            <p>
+              Visualisasi keuangan yang menarik dengan grafik interaktif.
+              Analisis pola pengeluaran dan pendapatan Anda dengan mudah.
+            </p>
+          </div>
+
+          <div class="feature-card animate-on-scroll">
+            <div class="feature-icon">🔔</div>
+            <h3>Notifikasi Tagihan</h3>
+            <p>
+              Jangan pernah lupa membayar tagihan lagi. Dapatkan pengingat
+              otomatis untuk semua tagihan bulanan dan pembayaran penting.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+      <div class="container">
+        <h2 class="section-title animate-on-scroll">Apa Kata Pengguna Kami</h2>
+        <div class="testimonial-grid">
+          <div class="testimonial-card animate-on-scroll">
+            <div class="testimonial-text">
+              "MoneyWise benar-benar mengubah cara saya mengelola keuangan.
+              Sekarang saya bisa menabung lebih banyak dan tidak pernah
+              terlambat bayar tagihan lagi!"
+            </div>
+            <div class="testimonial-author">Sarah Wijaya</div>
+            <div class="testimonial-role">Marketing Manager</div>
+          </div>
+
+          <div class="testimonial-card animate-on-scroll">
+            <div class="testimonial-text">
+              "Interface yang sangat user-friendly dan fitur yang lengkap.
+              Aplikasi ini membantu saya mencapai target dana darurat dalam 6
+              bulan!"
+            </div>
+            <div class="testimonial-author">Budi Santoso</div>
+            <div class="testimonial-role">Software Engineer</div>
+          </div>
+
+          <div class="testimonial-card animate-on-scroll">
+            <div class="testimonial-text">
+              "Sebagai freelancer, saya butuh aplikasi yang bisa track income
+              dan expense yang tidak tetap. MoneyWise solusinya!"
+            </div>
+            <div class="testimonial-author">Maya Putri</div>
+            <div class="testimonial-role">Graphic Designer</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="download">
+      <div class="container">
+        <h2 class="animate-on-scroll">Mulai Perjalanan Keuangan Anda</h2>
+        <p class="animate-on-scroll">
+          Bergabung dengan ribuan pengguna yang sudah merasakan manfaat
+          mengelola keuangan dengan MoneyWise
+        </p>
+        <a href="#" class="cta-primary animate-on-scroll"
+          >Coba Gratis Sekarang</a
+        >
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <p>
+          &copy; 2024 MoneyWise. Semua hak dilindungi. | Kelola keuangan dengan
+          bijak.
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+
+      // Header background change on scroll
+      window.addEventListener("scroll", function () {
+        const header = document.querySelector("header");
+        if (window.scrollY > 100) {
+          header.style.background = "rgba(102, 126, 234, 0.95)";
+          header.style.backdropFilter = "blur(10px)";
+        } else {
+          header.style.background =
+            "linear-gradient(135deg, #667eea 0%, #764ba2 100%)";
+          header.style.backdropFilter = "none";
+        }
+      });
+
+      // Intersection Observer for scroll animations
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animated");
+          }
+        });
+      }, observerOptions);
+
+      // Observe all elements with animate-on-scroll class
+      document.querySelectorAll(".animate-on-scroll").forEach((el) => {
+        observer.observe(el);
+      });
+
+      // Feature icons animation on hover
+      document.querySelectorAll(".feature-icon").forEach((icon) => {
+        icon.addEventListener("mouseenter", function () {
+          this.style.transform = "scale(1.2) rotate(10deg)";
+          this.style.transition = "all 0.3s ease";
+        });
+
+        icon.addEventListener("mouseleave", function () {
+          this.style.transform = "scale(1) rotate(0deg)";
+        });
+      });
+
+      // Add parallax effect to hero section
+      window.addEventListener("scroll", function () {
+        const scrolled = window.pageYOffset;
+        const parallax = document.querySelector(".hero");
+        const speed = scrolled * 0.5;
+        parallax.style.transform = `translateY(${speed}px)`;
+      });
+
+      // Counter animation for phone mockup balance
+      function animateCounter() {
+        const balance = document.querySelector(".balance");
+        const targetValue = 2547000;
+        let currentValue = 0;
+        const increment = targetValue / 50;
+        const timer = setInterval(() => {
+          currentValue += increment;
+          if (currentValue >= targetValue) {
+            currentValue = targetValue;
+            clearInterval(timer);
+          }
+          balance.textContent = `Rp ${Math.floor(currentValue).toLocaleString(
+            "id-ID"
+          )}`;
+        }, 50);
+      }
+
+      // Start counter animation after page load
+      window.addEventListener("load", () => {
+        setTimeout(animateCounter, 1000);
+      });
+
+      // Add click ripple effect to CTA buttons
+      document.querySelectorAll(".cta-primary").forEach((button) => {
+        button.addEventListener("click", function (e) {
+          const ripple = document.createElement("span");
+          const rect = this.getBoundingClientRect();
+          const size = Math.max(rect.width, rect.height);
+          const x = e.clientX - rect.left - size / 2;
+          const y = e.clientY - rect.top - size / 2;
+
+          ripple.style.width = ripple.style.height = size + "px";
+          ripple.style.left = x + "px";
+          ripple.style.top = y + "px";
+          ripple.style.position = "absolute";
+          ripple.style.borderRadius = "50%";
+          ripple.style.background = "rgba(255,255,255,0.6)";
+          ripple.style.transform = "scale(0)";
+          ripple.style.animation = "ripple 0.6s linear";
+          ripple.style.pointerEvents = "none";
+
+          this.style.position = "relative";
+          this.style.overflow = "hidden";
+          this.appendChild(ripple);
+
+          setTimeout(() => {
+            ripple.remove();
+          }, 600);
+        });
+      });
+
+      // Add ripple animation CSS
+      const style = document.createElement("style");
+      style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+      document.head.appendChild(style);
+    </script>
+  </body>
+</html>
