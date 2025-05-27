@@ -89,13 +89,7 @@ navLinks.forEach((link) => {
 const ctaButton = document.querySelector(".cta-button");
 ctaButton.addEventListener("click", (e) => {
   e.preventDefault();
-  const contactSection = document.querySelector("#contact");
-  const offsetTop = contactSection.offsetTop - 80;
-
-  window.scrollTo({
-    top: offsetTop,
-    behavior: "smooth",
-  });
+  window.open("https://wa.me/6287777760920", "_blank");
 });
 
 // Scroll animations
@@ -148,7 +142,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // Optional: close menu when a link is clicked (for better UX)
-    navMenu.querySelectorAll("a").forEach(link => {
+    navMenu.querySelectorAll("a").forEach((link) => {
       link.addEventListener("click", () => {
         navMenu.classList.remove("active");
         mobileMenu.classList.remove("active");
